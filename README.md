@@ -1,0 +1,11 @@
+# TheMovieApp
+This is a sample android project that show the movies (now playing and popular). It consume API data from https://www.themoviedb.org/
+
+Tech Stack :
+- Kotlin
+- MVVM (Design Pattern)
+- Koin (Dependecy Injection)
+- Android Architecture Component (ViewModel, LiveData)
+- Jetpack Libraries (AndroidX, Data Binding)
+- RxJava
+- Glide
