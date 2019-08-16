@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TheMovieApp</string>
+
+    <string name="company_info">%1$s / %2$s</string>
+    <string name="followers">%1$s Followers</string>
+    <string name="following">%1$s Following</string>
+
+    <string name="button_following">Following</string>
+
+    <string name="now_playing">Now Playing</string>
+    <string name="popular">Popular</string>
+
+</resources>
