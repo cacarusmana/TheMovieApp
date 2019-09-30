@@ -6,6 +6,7 @@ import com.themovie.caca.R
 import com.themovie.caca.model.Company
 import com.themovie.caca.model.Genre
 import com.themovie.caca.repository.MovieRepository
+import com.themovie.caca.util.handleNetworkError
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -42,6 +43,7 @@ class MovieViewModel(private val movieRepository: MovieRepository) : ViewModel()
 
         compositeDisposable.add(
             movieRepository.getGenres()
+                .handleNetworkError()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::onGenresReceived, this::onError)
@@ -59,7 +61,7 @@ class MovieViewModel(private val movieRepository: MovieRepository) : ViewModel()
         mainState.value = GenreErrorState(e.localizedMessage)
     }
 
-    private fun updateLoadingState(state:Boolean) {
+    private fun updateLoadingState(state: Boolean) {
         loadingState.value = state
     }
 

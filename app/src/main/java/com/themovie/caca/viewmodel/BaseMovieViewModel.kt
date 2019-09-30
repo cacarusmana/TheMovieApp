@@ -46,7 +46,7 @@ abstract class BaseMovieViewModel : ViewModel() {
     }
 
     override fun onCleared() {
-        compositeDisposable.dispose()
         super.onCleared()
+        compositeDisposable.dispose()
     }
 }

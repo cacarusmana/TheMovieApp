@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-        xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-                name="genre"
-                type="com.themovie.caca.model.Genre"/>
+            name="genre"
+            type="com.themovie.caca.model.Genre" />
     </data>
 
     <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/item_genre_bg"
-            android:foreground="?attr/selectableItemBackground"
-            android:paddingStart="15dp"
-            android:paddingTop="7dp"
-            android:paddingEnd="15dp"
-            android:paddingBottom="7dp"
-            android:gravity="center"
-            android:layout_margin="3dp">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:background="@drawable/item_genre_bg"
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingStart="15dp"
+        android:paddingTop="7dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="7dp">
 
         <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{genre.name}"
-                android:textColor="@android:color/black"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{genre.name}"
+            android:textColor="@android:color/black"
+            tools:text="Action" />
 
     </LinearLayout>
 

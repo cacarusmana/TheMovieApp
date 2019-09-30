@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-                name="movie"
-                type="com.themovie.caca.model.Movie"/>
+            name="movie"
+            type="com.themovie.caca.model.Movie" />
     </data>
 
 
     <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="2dp"
-            app:cardCornerRadius="0dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        app:cardCornerRadius="0dp">
 
         <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <ImageView
-                    android:id="@+id/imgThumbnail"
-                    android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:background="@color/movie_item"
-                    android:scaleType="fitXY"
-                    android:foreground="?selectableItemBackgroundBorderless"
-                    imageUrl="@{movie.posterPath}"
-                    android:src="@drawable/image_place_holder_list"/>
+                android:id="@+id/imgThumbnail"
+                imageUrl="@{movie.posterPath}"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@color/movie_item"
+                android:foreground="?selectableItemBackgroundBorderless"
+                android:scaleType="fitXY"
+                tools:src="@drawable/image_place_holder_list" />
 
         </LinearLayout>
 
