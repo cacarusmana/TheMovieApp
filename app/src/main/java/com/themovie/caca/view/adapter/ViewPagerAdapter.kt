@@ -6,9 +6,9 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.themovie.caca.model.ViewPagerModel
 
 class ViewPagerAdapter(
-    private val fm: FragmentManager,
+    fm: FragmentManager,
     private val viewPagerModels: List<ViewPagerModel>
-) : FragmentPagerAdapter(fm) {
+) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment = viewPagerModels[position].fragment
 
