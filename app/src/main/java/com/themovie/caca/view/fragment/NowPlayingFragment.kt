@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.themovie.caca.R
 import com.themovie.caca.util.gone
+import com.themovie.caca.util.invisible
 import com.themovie.caca.util.toast
 import com.themovie.caca.util.visible
 import com.themovie.caca.view.BaseView
@@ -54,6 +55,8 @@ class NowPlayingFragment : Fragment(), BaseView {
             progressbar.apply {
                 if (it) visible() else gone()
             }
+
+            if (it) pbLoadMore.visible() else pbLoadMore.invisible()
         })
 
         viewModel.movieState.observe(this, Observer {

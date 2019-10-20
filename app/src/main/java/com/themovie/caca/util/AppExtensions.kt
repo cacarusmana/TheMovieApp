@@ -22,6 +22,10 @@ fun View.gone() {
     visibility = View.GONE
 }
 
+fun View.invisible() {
+    visibility = View.INVISIBLE
+}
+
 fun AppCompatActivity.toast(errorMessage: String, duration: Int = Toast.LENGTH_LONG) {
     Toast.makeText(this, errorMessage, duration).show()
 }
