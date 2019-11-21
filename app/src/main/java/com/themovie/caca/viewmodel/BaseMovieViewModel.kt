@@ -22,6 +22,7 @@ abstract class BaseMovieViewModel : ViewModel() {
     protected val compositeDisposable = CompositeDisposable()
     val movieState = MutableLiveData<MovieState>()
     val loadingState = MutableLiveData<Boolean>()
+    val loadMoreLoadingState = MutableLiveData<Boolean>()
 
 
     abstract fun loadMovies()
@@ -43,6 +44,13 @@ abstract class BaseMovieViewModel : ViewModel() {
     protected fun updateLoadingState(state: Boolean) {
         isLoading = state
         loadingState.value = isLoading
+
+        if (!state) loadMoreLoadingState.value = state
+    }
+
+    protected fun updateLoadMoreLoadingState(state: Boolean) {
+        isLoading = state
+        loadMoreLoadingState.value = isLoading
     }
 
     override fun onCleared() {

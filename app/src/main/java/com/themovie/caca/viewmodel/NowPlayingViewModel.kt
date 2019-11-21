@@ -12,7 +12,10 @@ class NowPlayingViewModel(private val movieRepository: MovieRepository) : BaseMo
     }
 
     override fun loadMovies() {
-        updateLoadingState(true)
+        if (page == 0)
+            updateLoadingState(true)
+        else
+            updateLoadMoreLoadingState(true)
 
         compositeDisposable.add(
             movieRepository.getNowPlayingMovies(++page)

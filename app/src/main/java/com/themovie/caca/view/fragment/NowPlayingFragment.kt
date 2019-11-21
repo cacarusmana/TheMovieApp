@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.themovie.caca.R
 import com.themovie.caca.util.gone
-import com.themovie.caca.util.invisible
 import com.themovie.caca.util.toast
 import com.themovie.caca.util.visible
 import com.themovie.caca.view.BaseView
@@ -30,7 +29,11 @@ class NowPlayingFragment : Fragment(), BaseView {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_movie, container, false)
     }
 
@@ -52,11 +55,17 @@ class NowPlayingFragment : Fragment(), BaseView {
 
     override fun initObserver() {
         viewModel.loadingState.observe(this, Observer {
+
             progressbar.apply {
                 if (it) visible() else gone()
             }
 
-            if (it) pbLoadMore.visible() else pbLoadMore.invisible()
+        })
+
+        viewModel.loadMoreLoadingState.observe(this, Observer {
+            pbLoadMore.apply {
+                if (it) visible() else gone()
+            }
         })
 
         viewModel.movieState.observe(this, Observer {
