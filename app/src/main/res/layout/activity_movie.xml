@@ -40,7 +40,7 @@
                 app:expandedTitleTextAppearance="@android:color/transparent"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                <FrameLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -51,90 +51,112 @@
                         android:background="@color/light_gray"
                         android:scaleType="centerCrop"
                         app:layout_collapseMode="parallax"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         tools:src="@drawable/marvel_backdrop" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgLogo"
+                        src="@{viewModel.company.logo}"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="15dp"
+                        app:civ_border_color="@android:color/white"
+                        app:civ_border_width="2dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/marvel" />
+
+                    <TextView
+                        android:id="@+id/tvCompanyName"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:padding="15dp">
+                        android:layout_marginTop="5dp"
+                        android:text="@{viewModel.company.companyName}"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imgLogo"
+                        tools:text="Marvel Entertainment" />
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            src="@{viewModel.company.logo}"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            app:civ_border_color="@android:color/white"
-                            app:civ_border_width="2dp"
-                            tools:src="@drawable/marvel" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="@{viewModel.company.companyName}"
-                            android:textColor="@android:color/white"
-                            android:textSize="14sp"
-                            tools:text="Marvel Entertainment" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{@string/company_info(viewModel.company.email, viewModel.company.country)}"
-                            android:textColor="@android:color/white"
-                            android:textSize="14sp"
-                            tools:text="marvel@entertainment.com / United States"/>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{@string/followers(DataBindingUtilsKt.toFormattedNumber(viewModel.company.followers))}"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"
-                                tools:text="3.400 Followers" />
-
-                            <View
-                                android:layout_width="1dp"
-                                android:layout_height="15dp"
-                                android:layout_marginStart="7dp"
-                                android:layout_marginEnd="7dp"
-                                android:background="@android:color/white" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@{@string/following(DataBindingUtilsKt.toFormattedNumber(viewModel.company.following))}"
-                                android:textColor="@android:color/white"
-                                android:textSize="14sp"
-                                tools:text="999 Following" />
-                        </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvCompanyInfo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{@string/company_info(viewModel.company.email, viewModel.company.country)}"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvCompanyName"
+                        tools:text="marvel@entertainment.com / United States" />
 
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:background="@color/colorPrimary"
-                            android:clickable="true"
-                            android:foreground="?attr/selectableItemBackground"
-                            android:paddingStart="20dp"
-                            android:paddingTop="7dp"
-                            android:paddingEnd="20dp"
-                            android:paddingBottom="7dp"
-                            android:text="@string/button_following"
-                            android:textColor="@android:color/white"
-                            android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tvFollowers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{@string/followers(DataBindingUtilsKt.toFormattedNumber(viewModel.company.followers))}"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toStartOf="@id/divider"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvCompanyInfo"
+                        tools:text="3.400 Followers" />
 
-                    </LinearLayout>
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="1dp"
+                        android:layout_height="15dp"
+                        android:layout_marginStart="7dp"
+                        android:layout_marginEnd="7dp"
+                        android:background="@android:color/white"
+                        app:layout_constraintBottom_toBottomOf="@id/tvFollowers"
+                        app:layout_constraintEnd_toStartOf="@+id/tvFollowing"
+                        app:layout_constraintStart_toEndOf="@+id/tvFollowers"
+                        app:layout_constraintTop_toTopOf="@+id/tvFollowers" />
+
+                    <TextView
+                        android:id="@+id/tvFollowing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{@string/following(DataBindingUtilsKt.toFormattedNumber(viewModel.company.following))}"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/tvFollowers"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/divider"
+                        app:layout_constraintTop_toBottomOf="@+id/divider"
+                        app:layout_constraintTop_toTopOf="@+id/divider"
+                        tools:text="999 Following" />
 
 
-                </FrameLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/colorPrimary"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:paddingStart="20dp"
+                        android:paddingTop="7dp"
+                        android:paddingEnd="20dp"
+                        android:paddingBottom="7dp"
+                        android:text="@string/button_following"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -148,16 +170,18 @@
         </com.google.android.material.appbar.AppBarLayout>
 
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <RelativeLayout
+                android:id="@+id/layoutGenres"
                 android:layout_width="match_parent"
-                android:layout_height="45dp">
-
+                android:layout_height="45dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.facebook.shimmer.ShimmerFrameLayout
                     android:id="@+id/layout_shimmer"
@@ -190,7 +214,7 @@
                     android:id="@+id/rvGenres"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"/>
+                    android:layout_centerInParent="true" />
 
             </RelativeLayout>
 
@@ -199,6 +223,9 @@
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutGenres"
                 app:tabIndicatorColor="@android:color/black"
                 app:tabMode="fixed"
                 app:tabRippleColor="@color/colorPrimary" />
@@ -206,7 +233,11 @@
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
